@@ -1,4 +1,5 @@
 import pygame
+from salas.resumen import resumen
 
 def salaa4(color_fondo):
     pygame.init()
@@ -73,7 +74,7 @@ def salaa4(color_fondo):
                     intentos -= 1
                     print(intentos)
                 if marco_boton.collidepoint(evento.pos):
-                    print('Avanzando')
+                    resumen((120, 55, 12))
 
         pantalla.fill(color_fondo)
 
@@ -108,4 +109,3 @@ def salaa4(color_fondo):
         pygame.display.flip()
 
     pygame.quit()
-salaa4((82, 29, 68))
