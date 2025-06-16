@@ -1,4 +1,5 @@
 import pygame
+from salas.sala3 import salaa3
 
 def salaa2(color_fondo):
     pygame.init()
@@ -38,7 +39,7 @@ def salaa2(color_fondo):
     rect_boton = pygame.Rect(250, 750, 0, 0)
     texto_boton = fuente_opciones.render("Siguiente", True, color_fondo)
 
-    texto_ganaste = fuente_sala.render("Ganaste!", True, (22, 97, 14))
+    texto_ganaste = fuente_sala.render("Ganaste!", True, (86, 252, 25))
     pos_texto_ganaste = (-100, -100)
 
     flag_juego = True
@@ -61,13 +62,13 @@ def salaa2(color_fondo):
                     rect_opcion2 = pygame.Rect(100, 370, 0, 0)
                     rect_opcion4 = pygame.Rect(100, 370, 0, 0)
                     texto_opcion3 = fuente_opciones.render("if x > 5: print('Mayor')", True, (255, 255, 255))
-                    COLOR_CORRECTO = (22, 97, 14)
+                    COLOR_CORRECTO = (86, 252, 25)
                 if marco_opcion4.collidepoint(evento.pos):
                     COLOR_INCORRECTO4 = (176, 23, 31)
                     intentos -= 1
                     print(intentos)
                 if marco_boton.collidepoint(evento.pos):
-                    print('Avanzando')
+                    salaa3((45, 79, 43))
 
         pantalla.fill(color_fondo)
 
@@ -79,10 +80,6 @@ def salaa2(color_fondo):
         pantalla.blit(texto_pregunta, (70, 135))
 
         # MUESTRO LAS OPCIONES
-        # marco_opcion1 = pygame.draw.rect(pantalla, COLOR_CORRECTO, rect_opcion1, 0, 50, 50, 25, 25)
-        # marco_opcion2 = pygame.draw.rect(pantalla, COLOR_INCORRECTO2, rect_opcion2, 0, 50, 50, 25, 25)
-        # marco_opcion3 = pygame.draw.rect(pantalla, COLOR_INCORRECTO3, rect_opcion3, 0, 50, 50, 25, 25)
-        # marco_opcion4 = pygame.draw.rect(pantalla, COLOR_INCORRECTO4, rect_opcion4, 0, 50, 50, 25, 25)
         marco_opcion1 = pygame.draw.rect(pantalla, COLOR_INCORRECTO1, rect_opcion1, 0, 50, 50, 25, 25)
         marco_opcion2 = pygame.draw.rect(pantalla, COLOR_INCORRECTO2, rect_opcion2, 0, 50, 50, 25, 25)
         marco_opcion3 = pygame.draw.rect(pantalla, COLOR_CORRECTO, rect_opcion3, 0, 50, 50, 25, 25)
