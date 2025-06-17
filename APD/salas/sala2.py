@@ -45,7 +45,6 @@ def salaa2(color_fondo):
 
     flag_juego = True
     while flag_juego:
-        puntaje_sala2 = 0
         lista_eventos = pygame.event.get()
         for evento in lista_eventos:
             if evento.type == pygame.QUIT:
@@ -55,6 +54,7 @@ def salaa2(color_fondo):
                     COLOR_INCORRECTO1 = (176, 23, 31)
                     intentos -= 1
                     if intentos == 0:
+                        puntaje_sala2 = 0
                         sigue = False
                         return puntaje_sala2, sigue
 
@@ -62,6 +62,7 @@ def salaa2(color_fondo):
                     COLOR_INCORRECTO2 = (176, 23, 31)
                     intentos -= 1
                     if intentos == 0:
+                        puntaje_sala2 = 0
                         sigue = False
                         return puntaje_sala2, sigue
 
@@ -80,6 +81,7 @@ def salaa2(color_fondo):
                     COLOR_INCORRECTO4 = (176, 23, 31)
                     intentos -= 1
                     if intentos == 0:
+                        puntaje_sala2 = 0
                         sigue = False
                         return puntaje_sala2, sigue
 

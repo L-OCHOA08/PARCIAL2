@@ -5,7 +5,7 @@ def iniciar_juego(cantidad_incial_jugadores):
     pygame.init()
     # VARIABLES
     ANCHO_VENTANA = 800
-    ALTO_VENTANA = 600
+    ALTO_VENTANA = 800
     COLOR_SALA1 = (161, 147, 250)
     COLOR_BLANCO = (255, 255, 255)
     COLOR_FONDO = (120, 55, 12)

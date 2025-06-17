@@ -32,10 +32,11 @@ def juego():
 
         if sigue == True:
             puntaje_sala4, sigue = salaa4((82, 29, 68))
-            if sigue == True:
-                info_jugador.append('Completo')
-            else:
-                info_jugador.append('No completo')
+
+        if sigue == True:
+            info_jugador.append('Completo')
+        else:
+            info_jugador.append('No completo')
 
 
         puntaje = puntaje_sala1 + puntaje_sala2 + puntaje_sala3 + puntaje_sala4
@@ -47,7 +48,7 @@ def juego():
         info_jugador.append(puntaje)
 
         lista_jugadores[f'{nombre_jugador}: '] = info_jugador
-    # resumen((120, 55, 12),lista_jugadores)
+    resumen((120, 55, 12),lista_jugadores)
     print(lista_jugadores)
 
 

@@ -4,7 +4,7 @@ from salas.sala1 import salaa1
 def ingreso_individual(color_fondo, i):
     pygame.init()
     ANCHO_VENTANA = 800
-    ALTO_VENTANA = 600
+    ALTO_VENTANA = 800
     COLOR_BLANCO = (255, 255, 255)
     pos_nombre = 380
     # VENTANA

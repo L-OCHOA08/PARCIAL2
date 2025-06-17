@@ -9,12 +9,6 @@ def resumen(color_fondo, lista_jugadores):
 
     pantalla = pygame.display.set_mode((ANCHO_VENTANA, ALTO_VENTANA))
     pygame.display.set_caption("Sala de Escape de Programación")
-    tabla = ""
-    for clave, valor in lista_jugadores.items():
-        nombre_jugador, puntaje = valor
-        tabla += f"{clave}{nombre_jugador} {puntaje} pts\n"
-
-    lineas = tabla.strip().split('\n')
 
     flag_juego = True
     while flag_juego:
@@ -25,9 +19,18 @@ def resumen(color_fondo, lista_jugadores):
 
         pantalla.fill(color_fondo)
 
-        for i, linea in enumerate(lineas):
-            linea_render = fuente.render(linea, True, (255,255,255))
-            pantalla.blit(linea_render, (50, 50 + i * 30))
+        ordenados = sorted(lista_jugadores.items(), key=lambda x: x[1][-1], reverse=True)
+
+        y = 50
+        for jugador, valores in ordenados:
+            texto = f"{jugador}{' - '.join(str(v) for v in valores)}"
+            render = fuente.render(texto, True, (255,255,255))
+            pantalla.blit(render, (40, y))
+            y += 50
+
+        mejor_puntaje_fuente = pygame.font.Font("Golden Age.ttf", 40)
+        mejor_puntaje_texto = mejor_puntaje_fuente.render("Mejor Puntaje Total", True, (255,255,255))
+        pantalla.blit(mejor_puntaje_texto, (200, 560))
 
         pygame.display.flip()
 

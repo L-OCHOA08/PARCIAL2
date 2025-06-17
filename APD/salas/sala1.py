@@ -46,7 +46,6 @@ def salaa1(color_fondo):
 
     flag_juego = True
     while flag_juego:
-        puntaje_sala1 = 0
         sigue = False
         lista_eventos = pygame.event.get()
         for evento in lista_eventos:
@@ -69,6 +68,7 @@ def salaa1(color_fondo):
                     intentos -= 1
                     if intentos == 0:
                         sigue = False
+                        puntaje_sala1 = 0
                         return puntaje_sala1, sigue
                     
                 if marco_opcion3.collidepoint(evento.pos):
@@ -76,6 +76,7 @@ def salaa1(color_fondo):
                     intentos -= 1
                     if intentos == 0:
                         sigue = False
+                        puntaje_sala1 = 0
                         return puntaje_sala1, sigue
 
                 if marco_opcion4.collidepoint(evento.pos):
@@ -83,6 +84,7 @@ def salaa1(color_fondo):
                     intentos -= 1
                     if intentos == 0:
                         sigue = False
+                        puntaje_sala1 = 0
                         return puntaje_sala1, sigue
 
                 if marco_boton.collidepoint(evento.pos):
