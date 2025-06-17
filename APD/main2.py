@@ -13,16 +13,41 @@ def juego():
     print(cantidad_incial_jugadores)
     for jugador in range(cantidad_incial_jugadores):
         info_jugador = []
+        sigue = False
+        puntaje_sala1 = 0
+        puntaje_sala2 = 0
+        puntaje_sala3 = 0
+        puntaje_sala4 = 0
         puntaje = 0
+
         nombre_jugador = ingreso_individual((120, 55, 12), jugador)
-        info_jugador.append(nombre_jugador)
-        puntaje += salaa1((161, 147, 250))
-        puntaje += salaa2((37, 77, 112))
-        puntaje += salaa3((45, 79, 43))
-        puntaje += salaa4((82, 29, 68))
+
+        puntaje_sala1, sigue = salaa1((161, 147, 250))
+
+        if sigue == True:
+            puntaje_sala2, sigue = salaa2((37, 77, 112))
+            
+        if sigue == True:
+            puntaje_sala3, sigue = salaa3((45, 79, 43))
+
+        if sigue == True:
+            puntaje_sala4, sigue = salaa4((82, 29, 68))
+            if sigue == True:
+                info_jugador.append('Completo')
+            else:
+                info_jugador.append('No completo')
+
+
+        puntaje = puntaje_sala1 + puntaje_sala2 + puntaje_sala3 + puntaje_sala4
+
+        info_jugador.append(puntaje_sala1)
+        info_jugador.append(puntaje_sala2)
+        info_jugador.append(puntaje_sala3)
+        info_jugador.append(puntaje_sala4)
         info_jugador.append(puntaje)
-        lista_jugadores[f'Jugador {jugador+1}: '] = info_jugador
-    # resumen()
+
+        lista_jugadores[f'{nombre_jugador}: '] = info_jugador
+    # resumen((120, 55, 12),lista_jugadores)
     print(lista_jugadores)
 
 

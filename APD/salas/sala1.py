@@ -45,7 +45,9 @@ def salaa1(color_fondo):
     pos_texto_ganaste = (-100, -100)
 
     flag_juego = True
-    while flag_juego and intentos > 0:
+    while flag_juego:
+        puntaje_sala1 = 0
+        sigue = False
         lista_eventos = pygame.event.get()
         for evento in lista_eventos:
             if evento.type == pygame.QUIT:
@@ -60,18 +62,32 @@ def salaa1(color_fondo):
                     COLOR_CORRECTO = (86, 252, 25)
                     texto_opcion1 = fuente_opciones.render("int / float / str / boolean", True, (255,255,255))
                     puntaje_sala1 = random.randint(10, 35)
+                    sigue = True
+
                 if marco_opcion2.collidepoint(evento.pos):
                     COLOR_INCORRECTO2 = (176, 23, 31)
                     intentos -= 1
+                    if intentos == 0:
+                        sigue = False
+                        return puntaje_sala1, sigue
+                    
                 if marco_opcion3.collidepoint(evento.pos):
                     COLOR_INCORRECTO3 = (176, 23, 31)
                     intentos -= 1
+                    if intentos == 0:
+                        sigue = False
+                        return puntaje_sala1, sigue
+
                 if marco_opcion4.collidepoint(evento.pos):
                     COLOR_INCORRECTO4 = (176, 23, 31)
                     intentos -= 1
-                    print(intentos)
+                    if intentos == 0:
+                        sigue = False
+                        return puntaje_sala1, sigue
+
                 if marco_boton.collidepoint(evento.pos):
-                    return puntaje_sala1
+                    sigue = True
+                    return puntaje_sala1, sigue
 
         pantalla.fill(color_fondo)
 

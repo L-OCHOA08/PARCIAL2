@@ -48,7 +48,8 @@ def salaa3(color_fondo):
     pos_texto_ganaste = (-100, -100)
 
     flag_juego = True
-    while flag_juego and intentos > 0:
+    while flag_juego:
+        puntaje_sala3 = 0
         lista_eventos = pygame.event.get()
         for evento in lista_eventos:
             if evento.type == pygame.QUIT:
@@ -57,9 +58,17 @@ def salaa3(color_fondo):
                 if marco_opcion1.collidepoint(evento.pos):
                     COLOR_INCORRECTO1 = (176, 23, 31)
                     intentos -= 1
+                    if intentos == 0:
+                        sigue = False
+                        return puntaje_sala3, sigue
+                    
                 if marco_opcion2.collidepoint(evento.pos):
                     COLOR_INCORRECTO2 = (176, 23, 31)
                     intentos -= 1
+                    if intentos == 0:
+                        sigue = False
+                        return puntaje_sala3, sigue
+                    
                 if marco_opcion3.collidepoint(evento.pos):
                     pos_texto_ganaste = (330, 700)
                     rect_boton = (250, 750, 300, 80)
@@ -68,14 +77,19 @@ def salaa3(color_fondo):
                     rect_opcion4 = pygame.Rect(100, 370, 0, 0)
                     texto_opcion3 = fuente_opciones.render("Indicar que un directorio debe tratarse como un", True, (255,255,255))
                     texto2_opcion3 = fuente_opciones.render("paquete de Python", True, (255,255,255))
-                    puntaje_sala3 = random.randint(10, 35)
                     COLOR_CORRECTO = (86, 252, 25)
+                    puntaje_sala3 = random.randint(10, 35)
+                    sigue = True
+
                 if marco_opcion4.collidepoint(evento.pos):
                     COLOR_INCORRECTO4 = (176, 23, 31)
                     intentos -= 1
-                    print(intentos)
+                    if intentos == 0:
+                        sigue = False
+                        return puntaje_sala3, sigue
+                    
                 if marco_boton.collidepoint(evento.pos):
-                    return puntaje_sala3
+                    return puntaje_sala3, sigue
 
         pantalla.fill(color_fondo)
 
