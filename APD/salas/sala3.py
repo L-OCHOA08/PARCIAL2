@@ -1,4 +1,5 @@
 import pygame
+import random
 from salas.sala4 import salaa4
 
 def salaa3(color_fondo):
@@ -67,13 +68,14 @@ def salaa3(color_fondo):
                     rect_opcion4 = pygame.Rect(100, 370, 0, 0)
                     texto_opcion3 = fuente_opciones.render("Indicar que un directorio debe tratarse como un", True, (255,255,255))
                     texto2_opcion3 = fuente_opciones.render("paquete de Python", True, (255,255,255))
+                    puntaje_sala3 = random.randint(10, 35)
                     COLOR_CORRECTO = (86, 252, 25)
                 if marco_opcion4.collidepoint(evento.pos):
                     COLOR_INCORRECTO4 = (176, 23, 31)
                     intentos -= 1
                     print(intentos)
                 if marco_boton.collidepoint(evento.pos):
-                    salaa4((82, 29, 68))
+                    return puntaje_sala3
 
         pantalla.fill(color_fondo)
 
@@ -106,4 +108,3 @@ def salaa3(color_fondo):
 
         pygame.display.flip()
 
-    pygame.quit()

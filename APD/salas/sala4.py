@@ -1,4 +1,5 @@
 import pygame
+import random
 from salas.resumen import resumen
 
 def salaa4(color_fondo):
@@ -65,6 +66,7 @@ def salaa4(color_fondo):
                     texto2_opcion2 = fuente_opciones.render("original y deepcopy() realiza una copia independiente", True, (255,255,255))
                     rect_opcion3 = pygame.Rect(100, 370, 0, 0)
                     rect_opcion4 = pygame.Rect(100, 370, 0, 0)
+                    puntaje_sala4 = random.randint(10, 35)
                     COLOR_CORRECTO = (86, 252, 25)
                 if marco_opcion3.collidepoint(evento.pos):
                     COLOR_INCORRECTO3 = (176, 23, 31)
@@ -74,7 +76,7 @@ def salaa4(color_fondo):
                     intentos -= 1
                     print(intentos)
                 if marco_boton.collidepoint(evento.pos):
-                    resumen((120, 55, 12))
+                    return puntaje_sala4
 
         pantalla.fill(color_fondo)
 
@@ -108,4 +110,3 @@ def salaa4(color_fondo):
 
         pygame.display.flip()
 
-    pygame.quit()

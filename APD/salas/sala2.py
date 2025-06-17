@@ -1,4 +1,5 @@
 import pygame
+import random
 from salas.sala3 import salaa3
 
 def salaa2(color_fondo):
@@ -62,13 +63,14 @@ def salaa2(color_fondo):
                     rect_opcion2 = pygame.Rect(100, 370, 0, 0)
                     rect_opcion4 = pygame.Rect(100, 370, 0, 0)
                     texto_opcion3 = fuente_opciones.render("if x > 5: print('Mayor')", True, (255, 255, 255))
+                    puntaje_sala2 = random.randint(10, 35)
                     COLOR_CORRECTO = (86, 252, 25)
                 if marco_opcion4.collidepoint(evento.pos):
                     COLOR_INCORRECTO4 = (176, 23, 31)
                     intentos -= 1
                     print(intentos)
                 if marco_boton.collidepoint(evento.pos):
-                    salaa3((45, 79, 43))
+                    return puntaje_sala2
 
         pantalla.fill(color_fondo)
 
@@ -98,4 +100,3 @@ def salaa2(color_fondo):
 
         pygame.display.flip()
 
-    pygame.quit()

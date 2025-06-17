@@ -20,6 +20,6 @@ def resumen(color_fondo):
 
         pygame.display.flip()
 
-    pygame.quit()
 
-resumen((68, 0, 255))
+
+# resumen((68, 0, 255))
