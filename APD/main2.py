@@ -1,4 +1,4 @@
-from salas.main import iniciar_juego
+from salas.inicio import iniciar_juego
 from salas.preparacion import ingreso_individual
 from salas.sala1 import salaa1
 from salas.sala2 import salaa2

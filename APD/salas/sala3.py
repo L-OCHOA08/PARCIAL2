@@ -1,6 +1,5 @@
 import pygame
 import random
-from salas.sala4 import salaa4
 
 def salaa3(color_fondo):
     pygame.init()

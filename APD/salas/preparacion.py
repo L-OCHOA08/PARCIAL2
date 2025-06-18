@@ -1,5 +1,4 @@
 import pygame
-from salas.sala1 import salaa1
 
 def ingreso_individual(color_fondo, i):
     pygame.init()

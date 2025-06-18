@@ -1,6 +1,5 @@
 import pygame
 import random
-from salas.resumen import resumen
 
 def salaa4(color_fondo):
     pygame.init()

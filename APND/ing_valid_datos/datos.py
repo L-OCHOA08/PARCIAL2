@@ -50,23 +50,23 @@ def buscar_respuesta_correcta(respuestas, respuesta_correcta):
             i += 1
 
 def validar_respuesta(pregunta, opcion_correcta):
-    respuesta = int(input(pregunta))
-    intentos = 1
+    intentos = 2
     respuesta_correcta = False
+    respuesta = int(input(pregunta))
     while intentos != 0 and not respuesta_correcta:
-        if respuesta == opcion_correcta:
+        if respuesta != opcion_correcta:
+            intentos -= 1
+            print("INCORRECTO!")
+            print(f"Te queda {intentos} intento")
+            respuesta = int(input(pregunta))
+        else:
             print("Opcion Correcta!\nAvanzando a la siguiente sala...")
             respuesta_correcta = True
             return respuesta_correcta
-        else:
-            intentos -= 1
-            print("INCORRECTO!")
-            print(f"Te queda {intentos+1} intento")
-            respuesta = int(input(pregunta))
-        if intentos == 0:
-            print("PERDISTE! VUELVE A INTENTARLO")
-            respuesta_correcta = False
-            return respuesta_correcta
+    if intentos == 0:
+        print("PERDISTE! VUELVE A INTENTARLO")
+        respuesta_correcta = False
+        return respuesta_correcta
 
 
 def escape(nombre_jugador):
