@@ -1,6 +1,6 @@
 import pygame
 
-def resumen(color_fondo, lista_jugadores):
+def resumen(color_fondo, lista_jugadores, lista_por_sala, no_pasaron_primera_lista):
     pygame.init()
 
     ANCHO_VENTANA = 800
@@ -28,9 +28,27 @@ def resumen(color_fondo, lista_jugadores):
             pantalla.blit(render, (40, y))
             y += 50
 
-        mejor_puntaje_fuente = pygame.font.Font("Golden Age.ttf", 40)
-        mejor_puntaje_texto = mejor_puntaje_fuente.render("Mejor Puntaje Total", True, (255,255,255))
-        pantalla.blit(mejor_puntaje_texto, (200, 560))
+        ordenados_lista = sorted(lista_por_sala.items(), key=lambda x: int(x[1].split()[-1]), reverse=True)
+        top3 = ordenados_lista[0:3]
+
+        y_lista_salas = 600
+        for jugador in top3:
+            texto_sala = f"{jugador}"
+            render_sala = fuente.render(texto_sala, True, (255, 255, 255))
+            pantalla.blit(render_sala, (40, y_lista_salas))
+            y_lista_salas += 50
+
+        jugador_no_paso = 600
+        for jugador in no_pasaron_primera_lista:
+            render_jugador = fuente.render(jugador, True, (255,255,255))
+            pantalla.blit(render_jugador, (400, jugador_no_paso))
+            jugador_no_paso += 50
+
+        mejor_puntaje_fuente = pygame.font.Font("Golden Age.ttf", 30)
+        mejor_puntaje_texto = mejor_puntaje_fuente.render("Llegaron mas lejos", True, (255,255,255))
+        no_pasaron_primera = mejor_puntaje_fuente.render("No superaron la sala 1", True, (255,255,255))
+        pantalla.blit(mejor_puntaje_texto, (40, 560))
+        pantalla.blit(no_pasaron_primera, (400 ,560))
 
         pygame.display.flip()
 
