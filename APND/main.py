@@ -3,13 +3,41 @@ from ing_valid_datos.datos import *
 def sala_de_escape():
     MAX_JUGADORES = 10
     lista_jugadores = []
+    tabla_general = []
+    tabla_salas = []
+    lista_no_pasaron_sala1 = []
     cant_jugadores = int(input("Cantidad de jugadores(1-10): "))
     while cant_jugadores <= 0 or cant_jugadores > MAX_JUGADORES:
         cant_jugadores = input("Cantidad inválida. Ingrese una cantidad de jugadores entre 1 y 10: ")
 
-    # ingreso_individual(cant_jugadores, lista_jugadores)
-    lista_jugadores, nombre_jugador = ingreso_individual(cant_jugadores, lista_jugadores)
-    salas(lista_jugadores, nombre_jugador)
+    for jugador in range(cant_jugadores):
+        tabla_jugador = []
+        tabla_sala_jugador = []
+        lista_jugadores, jugador = ingreso_individual(lista_jugadores)
+        nombre, puntaje_general, puntaje_sala1, puntaje_sala2, puntaje_sala3, puntaje_sala4, cant_salas, no_paso_primera = escape(jugador)
+
+        if no_paso_primera == True:
+            lista_no_pasaron_sala1.append(nombre)
+        
+        # TABLA GENERAL
+        tabla_jugador.append(nombre)
+        tabla_jugador.append(puntaje_sala1)
+        tabla_jugador.append(puntaje_sala2)
+        tabla_jugador.append(puntaje_sala3)
+        tabla_jugador.append(puntaje_sala4)
+        tabla_jugador.append(puntaje_general)
+        tabla_general.append(tabla_jugador)
+
+        # TABLA POR SALAS
+        tabla_sala_jugador.append(nombre)
+        tabla_sala_jugador.append(cant_salas)
+        tabla_salas.append(tabla_sala_jugador)
+
+        # TABLA NO LOGRARON PASAR LA PRIMERA SALA
+
+    mostrar_mayor_puntajes(tabla_general)
+    mostrar_por_sala(tabla_salas)
+    mostrar_no_pasaron_primera(lista_no_pasaron_sala1)
 
 
 sala_de_escape()
