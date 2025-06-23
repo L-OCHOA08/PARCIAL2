@@ -1,9 +1,9 @@
 from salas.inicio import iniciar_juego
 from salas.preparacion import ingreso_individual
-from salas.sala1 import salaa1
-from salas.sala2 import salaa2
-from salas.sala3 import salaa3
-from salas.sala4 import salaa4
+from salas.sala1 import sala1
+from salas.sala2 import sala2
+from salas.sala3 import sala3
+from salas.sala4 import sala4
 from salas.resumen import resumen
 
 def juego():
@@ -25,21 +25,21 @@ def juego():
 
         nombre_jugador = ingreso_individual((120, 55, 12), jugador)
 
-        puntaje_sala1, sigue = salaa1((161, 147, 250))
+        puntaje_sala1, sigue = sala1((161, 147, 250))
 
         if sigue == True:
             sala_finalizo += 1
-            puntaje_sala2, sigue = salaa2((37, 77, 112))
+            puntaje_sala2, sigue = sala2((37, 77, 112))
         else:
             no_pasaron_primera.append(nombre_jugador)
             
         if sigue == True:
             sala_finalizo += 1
-            puntaje_sala3, sigue = salaa3((45, 79, 43))
+            puntaje_sala3, sigue = sala3((45, 79, 43))
 
         if sigue == True:
             sala_finalizo += 1
-            puntaje_sala4, sigue = salaa4((82, 29, 68))
+            puntaje_sala4, sigue = sala4((82, 29, 68))
 
         if sigue == True:
             info_jugador.append('Completo')

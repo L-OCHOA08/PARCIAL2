@@ -1,125 +1,126 @@
 import pygame
 import random
 
-def salaa3(color_fondo):
+def sala3(color_fondo):
     pygame.init()
 
     # COLORES
     ANCHO_VENTANA = 800
     ALTO_VENTANA = 900
     COLOR_BLANCO = (255, 255, 255)
-    COLOR_INCORRECTO1 = (255, 255, 255)
-    COLOR_INCORRECTO2 = (255, 255, 255)
     COLOR_CORRECTO = (255, 255, 255)
-    COLOR_INCORRECTO4 = (255, 255, 255)
+    COLOR_INCORRECTO = (255, 255, 255)
+    COLOR_TIMER = (255,255,255)
 
     # VENTANA
     pantalla = pygame.display.set_mode((ANCHO_VENTANA, ALTO_VENTANA))
     pygame.display.set_caption("Sala de Escape de Programación")
 
+    # RELOJ
+    reloj = pygame.time.Clock()
+    TIEMPO = 15000
+    respondio = False
+    inicio_tiempo = pygame.time.get_ticks()
+
+    # FONDOS
+    fondo1 = pygame.image.load("puerta_cerrada.png")
+    fondo2 = pygame.image.load("puerta_abierta.png")
+    usar_fondo1 = True
+
+    avanzar = pygame.image.load("flecha_avanzar.svg")
+    avanzar = pygame.transform.scale(avanzar, (200,200))
+    avanzar_rect = avanzar.get_rect(topleft=(370,600))
+
     # TEXTOS
     fuente_sala = pygame.font.Font("Golden Age.ttf", 30)
     texto_sala = fuente_sala.render("Sala 3", True, COLOR_BLANCO)
     fuente_pregunta = pygame.font.Font("Golden Age Shad.ttf", 30)
-    texto_pregunta = fuente_pregunta.render("Que funcion tiene un archivo", True, color_fondo)
-    texto2_pregunta = fuente_pregunta.render("'__init__'?", True, color_fondo)
+    texto_pregunta = fuente_pregunta.render("a = [2, 4, 6, 8]", True, color_fondo)
+    texto2_pregunta = fuente_pregunta.render("Cual es el valor de a[-2]?", True, color_fondo)
+
+    rect_respuesta = pygame.Rect(100, 270, 600, 80)
+    pos_respuesta = 400
 
 
     intentos = 2
 
-    fuente_opciones = pygame.font.Font("Golden Age.ttf", 20)
-    fuente_boton = pygame.font.Font("Golden Age.ttf", 30)
-    texto_opcion1 = fuente_opciones.render("Sirve para ejecutar el codigo principal de la", True, color_fondo)
-    texto2_opcion1 = fuente_opciones.render("aplicacion", True, color_fondo)
-    rect_opcion1 = pygame.Rect(100, 270, 600, 80)
-    texto_opcion2 = fuente_opciones.render("Es un archivo temporal que se elimina al compilar", True, color_fondo)
-    rect_opcion2 = pygame.Rect(100, 370, 600, 80)
-    texto_opcion3 = fuente_opciones.render("Indicar que un directorio debe tratarse como un", True, color_fondo)
-    texto2_opcion3 = fuente_opciones.render("paquete de Python", True, color_fondo)
-    rect_opcion3 = pygame.Rect(100, 470, 600, 80)
-    texto_opcion4 = fuente_opciones.render("Ninguna de las anteriores", True, color_fondo)
-    rect_opcion4 = pygame.Rect(100, 570, 600, 80)
+    respuesta_font = pygame.font.Font("Golden Age.ttf", 30)
+    ingreso = ""
 
-    rect_boton = pygame.Rect(250, 750, 0, 0)
-    texto_boton = fuente_boton.render("Siguiente", True, color_fondo)
-
-    texto_ganaste = fuente_sala.render("Ganaste!", True, (86, 252, 25))
-    pos_texto_ganaste = (-100, -100)
+    rect_boton = pygame.Rect(250, 400, 300, 80)
+    texto_boton = respuesta_font.render("Responder", True, color_fondo)
 
     flag_juego = True
     while flag_juego:
+        sigue = False
         lista_eventos = pygame.event.get()
         for evento in lista_eventos:
             if evento.type == pygame.QUIT:
                 flag_juego = False
+            if evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_BACKSPACE:
+                    ingreso = ingreso[:-1]
+                    pos_respuesta += 8
+                else:
+                    ingreso += evento.unicode
+                    pos_respuesta -= 8
             if evento.type == pygame.MOUSEBUTTONDOWN:
-                if marco_opcion1.collidepoint(evento.pos):
-                    COLOR_INCORRECTO1 = (176, 23, 31)
+                if rect_boton.collidepoint(evento.pos) and ingreso != "6":
+                    texto_intentos = fuente_sala.render(f"Intentos restantes: {intentos}", True, COLOR_BLANCO)
                     intentos -= 1
+                    COLOR_INCORRECTO = (176, 23, 31)
                     if intentos == 0:
-                        puntaje_sala3 = 0
                         sigue = False
-                        return puntaje_sala3, sigue
+                        puntaje_sala1= 0
+                        return puntaje_sala1, sigue
+                if rect_boton.collidepoint(evento.pos) and ingreso == "6":
+                    puntaje_sala1 = random.randint(10, 35)
+                    rect_boton = pygame.Rect(100, 270, 0, 0)
+                    rect_respuesta = pygame.Rect(100, 270, 0, 0)
+                    ingreso = ""
+                    usar_fondo1 = False
+                    respondio = True
+                    COLOR_TIMER = (86, 252, 25)
                     
-                if marco_opcion2.collidepoint(evento.pos):
-                    COLOR_INCORRECTO2 = (176, 23, 31)
-                    intentos -= 1
-                    if intentos == 0:
-                        puntaje_sala3 = 0
-                        sigue = False
-                        return puntaje_sala3, sigue
-                    
-                if marco_opcion3.collidepoint(evento.pos):
-                    pos_texto_ganaste = (330, 700)
-                    rect_boton = (250, 750, 300, 80)
-                    rect_opcion1 = pygame.Rect(100, 370, 0, 0)
-                    rect_opcion2 = pygame.Rect(100, 370, 0, 0)
-                    rect_opcion4 = pygame.Rect(100, 370, 0, 0)
-                    texto_opcion3 = fuente_opciones.render("Indicar que un directorio debe tratarse como un", True, (255,255,255))
-                    texto2_opcion3 = fuente_opciones.render("paquete de Python", True, (255,255,255))
-                    COLOR_CORRECTO = (86, 252, 25)
-                    puntaje_sala3 = random.randint(10, 35)
+                if avanzar_rect.collidepoint(evento.pos):
                     sigue = True
+                    return puntaje_sala1, sigue
 
-                if marco_opcion4.collidepoint(evento.pos):
-                    COLOR_INCORRECTO4 = (176, 23, 31)
-                    intentos -= 1
-                    if intentos == 0:
-                        puntaje_sala3 = 0
-                        sigue = False
-                        return puntaje_sala3, sigue
-                    
-                if marco_boton.collidepoint(evento.pos):
-                    return puntaje_sala3, sigue
+        if not respondio:
+            tiempo_actual = pygame.time.get_ticks()
+            tiempo_restante = max(0, TIEMPO - (tiempo_actual - inicio_tiempo))
+            segundos_restantes = tiempo_restante // 1000
 
-        pantalla.fill(color_fondo)
+        if segundos_restantes == 0:
+            pygame.quit()
+
+        if usar_fondo1:
+            pantalla.blit(fondo1, (-100,0))
+        else:
+            pantalla.blit(fondo2, (-100,0))
+            pantalla.blit(avanzar, (370,600))
+
+        texto_tiempo = fuente_sala.render(f"Tiempo: {segundos_restantes}", True, COLOR_TIMER)
+        pantalla.blit(texto_tiempo, (330, 500))
 
         # MUESTRO LA PREGUNTA
-        pantalla.blit(texto_sala, (350, 25))
-        texto_intentos = fuente_sala.render(f"Intentos restantes: {intentos}", True, COLOR_BLANCO)
-        pantalla.blit(texto_intentos, (235, 50))
+        pantalla.blit(texto_sala, (355, 25))
+        texto_intentos = fuente_sala.render(f"Intentos restantes: {intentos}", True, COLOR_INCORRECTO)
+        pantalla.blit(texto_intentos, (250, 50))
         marco_pregunta = pygame.draw.rect(pantalla, COLOR_BLANCO, pygame.Rect(60, 75, 690, 150), 0, 50, 50, 25, 25)
-        pantalla.blit(texto_pregunta, (140, 125))
-        pantalla.blit(texto2_pregunta, (290, 155))
-
-        # MUESTRO LAS OPCIONES
-        marco_opcion1 = pygame.draw.rect(pantalla, COLOR_INCORRECTO1, rect_opcion1, 0, 50, 50, 25, 25)
-        marco_opcion2 = pygame.draw.rect(pantalla, COLOR_INCORRECTO2, rect_opcion2, 0, 50, 50, 25, 25)
-        marco_opcion3 = pygame.draw.rect(pantalla, COLOR_CORRECTO, rect_opcion3, 0, 50, 50, 25, 25)
-        marco_opcion4 = pygame.draw.rect(pantalla, COLOR_INCORRECTO4, rect_opcion4, 0, 50, 50, 25, 25)
-
-        marco_boton = pygame.draw.rect(pantalla, COLOR_BLANCO, rect_boton, 0, 50, 50, 25, 25)
-        pantalla.blit(texto_opcion1, (130, 295))
-        pantalla.blit(texto2_opcion1, (130, 315))
-        pantalla.blit(texto_opcion2, (130, 400))
-        pantalla.blit(texto_opcion3, (130, 495))
-        pantalla.blit(texto2_opcion3, (130, 515))
-        pantalla.blit(texto_opcion4, (130, 600))
+        pantalla.blit(texto_pregunta, (150, 125))
+        pantalla.blit(texto2_pregunta, (152, 155))
+        marco_respuesta = pygame.draw.rect(pantalla, COLOR_CORRECTO, rect_respuesta, 10, 20, 20, 20, 20)
+        input_respuesta = respuesta_font.render(f"{ingreso}", True, COLOR_BLANCO)
+        pantalla.blit(input_respuesta, (pos_respuesta, 295))
 
 
-        pantalla.blit(texto_ganaste,pos_texto_ganaste)
-        pantalla.blit(texto_boton, (330, 775))
+        if len(ingreso) > 0:
+            marco_boton = pygame.draw.rect(pantalla, COLOR_BLANCO, rect_boton, 0, 50, 50, 25, 25)
+            pantalla.blit(texto_boton, (330, 425))
 
 
         pygame.display.flip()
+        reloj.tick(60)
 
+    pygame.quit()
