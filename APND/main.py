@@ -2,10 +2,10 @@ from ing_valid_datos.datos import *
 
 def sala_de_escape():
     MAX_JUGADORES = 10
-    lista_jugadores = []
-    tabla_general = []
-    tabla_salas = []
-    lista_no_pasaron_sala1 = []
+    lista_jugadores = [] # LISTA DONDE SE INTRODUCIRAN LOS JUGADORES
+    tabla_general = [] # LISTA PARA EL RESUMEN DONDE MUESTRA A TODOS LOS JUGADORES
+    tabla_salas = [] # LISTA PARA EL RESUMEN DONDE MUESTRA LOS PRIMEROS 3 Y SU CANTIDAD DE SALAS PASADAS
+    lista_no_pasaron_sala1 = [] # LISTA PARA EL RESUMEN DONDE MUESTRA LOS QUE NO PASARON LA SALA 1
     cant_jugadores = int(input("Cantidad de jugadores(1-10): "))
     while cant_jugadores <= 0 or cant_jugadores > MAX_JUGADORES:
         cant_jugadores = input("Cantidad inválida. Ingrese una cantidad de jugadores entre 1 y 10: ")
