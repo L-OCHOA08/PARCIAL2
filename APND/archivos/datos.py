@@ -117,11 +117,11 @@ def escape(jugador):
             if i == 5:
                 no_paso_primera = False
                 completo = 'Completó'
-            elif i >= 3 and i <= 4:
+            elif cant_salas >= 2 and cant_salas <= 3:
                 no_paso_primera = False
                 completo = 'No Completó'
-            else:
-                no_paso_primera = True
+    else:
+        no_paso_primera = True
 
     print(f"Tu puntaje final es: {puntaje_por_sala[4]}")
     print("----- TABLA -----")
