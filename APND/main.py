@@ -1,4 +1,4 @@
-from ing_valid_datos.datos import *
+from archivos.datos import *
 
 def sala_de_escape():
     MAX_JUGADORES = 10
@@ -11,21 +11,17 @@ def sala_de_escape():
         cant_jugadores = input("Cantidad inválida. Ingrese una cantidad de jugadores entre 1 y 10: ")
 
     for jugador in range(cant_jugadores):
-        tabla_jugador = []
-        tabla_sala_jugador = []
+        tabla_jugador = [] # SE GUARDA EL NOMBRE CON CADA UNO DE LOS PUNTAJES INDIVIDUALMENTE
+        tabla_sala_jugador = [] # SE GUARDA EL NOMBRE CON LA SALA EN LA QUE FINALIZÓ SU RECORRIDO
         lista_jugadores, jugador = ingreso_individual(lista_jugadores)
-        nombre, puntaje_general, puntaje_sala1, puntaje_sala2, puntaje_sala3, puntaje_sala4, cant_salas, no_paso_primera = escape(jugador)
+        nombre, puntaje_por_sala,cant_salas, no_paso_primera = escape(jugador)
 
         if no_paso_primera == True:
             lista_no_pasaron_sala1.append(nombre)
         
         # TABLA GENERAL
         tabla_jugador.append(nombre)
-        tabla_jugador.append(puntaje_sala1)
-        tabla_jugador.append(puntaje_sala2)
-        tabla_jugador.append(puntaje_sala3)
-        tabla_jugador.append(puntaje_sala4)
-        tabla_jugador.append(puntaje_general)
+        tabla_jugador.append(puntaje_por_sala)
         tabla_general.append(tabla_jugador)
 
         # TABLA POR SALAS
